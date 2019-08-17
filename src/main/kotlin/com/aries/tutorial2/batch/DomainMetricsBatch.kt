@@ -18,12 +18,15 @@ class DomainMetricsBatch : BatchHandler {
         for (d in batchData) {
             val data = d as MetricsDataAsDomain
 
-            LogUtil.info("Domain ID : " + data.domainId)
-            LogUtil.info("Domain Name : " + data.domainName)
-            LogUtil.info("Call Count : " + data.serviceCount)
-            LogUtil.info("Max TPS : " + data.maxTps)
-            LogUtil.info("Active Service : " + data.activeService)
-            LogUtil.info("Error Count : " + data.errorCount + "\n")
+            val sb = StringBuilder()
+            sb.append("Domain ID : " + data.domainId + ", ")
+            sb.append("Domain Name : " + data.domainName + ", ")
+            sb.append("Service Count : " + data.serviceCount + ", ")
+            sb.append("Max TPS : " + data.maxTps + ", ")
+            sb.append("Active Service : " + data.maxTps + ", ")
+            sb.append("Error Count : " + data.errorCount)
+
+            LogUtil.info(sb.toString())
         }
     }
 }

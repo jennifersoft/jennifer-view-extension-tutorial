@@ -18,12 +18,15 @@ class ApplicationServiceBatch : BatchHandler {
         for (d in batchData) {
             val data = d as ApplicationServiceData
 
-            LogUtil.info("Domain ID : " + data.domainId)
-            LogUtil.info("Domain Name : " + data.domainName)
-            LogUtil.info("Instance Name : " + data.instanceName)
-            LogUtil.info("Application Name : " + data.applicationName)
-            LogUtil.info("Call Count : " + data.callCount)
-            LogUtil.info("Failure Count : " + data.failureCount + "\n")
+            val sb = StringBuilder()
+            sb.append("Domain ID : " + data.domainId + ", ")
+            sb.append("Domain Name : " + data.domainName + ", ")
+            sb.append("Instance Name : " + data.instanceName + ", ")
+            sb.append("Application Name : " + data.applicationName + ", ")
+            sb.append("Call Count : " + data.callCount + ", ")
+            sb.append("Failure Count : " + data.failureCount)
+
+            LogUtil.info(sb.toString())
         }
     }
 }
