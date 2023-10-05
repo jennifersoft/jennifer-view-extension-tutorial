@@ -13,6 +13,7 @@ class EventAdapter : EventHandler {
         for (data in events) {
             LogUtil.info("Domain ID : " + data.domainId)
             LogUtil.info("Instance Name : " + data.instanceName)
+            LogUtil.info("Business Name : " + data.businessName)
             LogUtil.info("Transaction ID : " + data.txid)
             LogUtil.info("Service Name : " + data.serviceName)
             LogUtil.info("Error Type : " + data.errorType)
