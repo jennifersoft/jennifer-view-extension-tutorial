@@ -5,7 +5,7 @@
 
     <groupId>com.aries</groupId>
     <artifactId>extension-tutorial</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>extension-tutorial</name>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>com.aries</groupId>
             <artifactId>extension</artifactId>
-            <version>1.5.7</version>
+            <version>1.5.8</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
