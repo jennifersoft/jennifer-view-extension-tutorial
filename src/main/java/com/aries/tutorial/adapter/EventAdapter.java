@@ -8,17 +8,21 @@ import com.aries.extension.util.LogUtil;
 public class EventAdapter implements EventHandler {
     @Override
     public void on(EventData[] events) {
-        LogUtil.info("[EventAdapter] - " +
-                PropertyUtil.getValue("event_adapter", "subject", "Unknown subject"));
+        var subject = PropertyUtil.getValue("event_adapter", "subject", "Unknown subject");
+        LogUtil.info("[EventAdapter] - " + subject);
 
-        for(EventData data : events) {
+        for (var data : events) {
             LogUtil.info("Domain ID : " + data.domainId);
             LogUtil.info("Instance Name : " + data.instanceName);
-            LogUtil.info("Business Name : " + data.businessName);
-            LogUtil.info("Transaction ID : " + data.txid);
             LogUtil.info("Service Name : " + data.serviceName);
-            LogUtil.info("Error Type : " + data.errorType);
-            LogUtil.info("Event Level : " + data.eventLevel + "\n");
+            LogUtil.info("Event Level : " + data.eventLevel);
+
+            // 쿠버네티스 환경인 경우 메타데이터 출력 (1.5.8 이상 지원)
+            if (data.instanceData != null && data.instanceData.k8s != null) {
+                var k8s = data.instanceData.k8s;
+                LogUtil.info("Pod UID: " + k8s.podUid);
+                LogUtil.info("Container: " + k8s.containerName);
+            }
         }
     }
 }

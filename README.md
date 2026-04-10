@@ -249,6 +249,12 @@ public class EventAdapter implements EventHandler {
 String value = PropertyUtil.getValue("event_adapter", "subject", "기본값");
 ```
 
+#### 어댑터 ID 설정 방법
+1.  **제니퍼 관리 콘솔** 접속: `구성 관리` > `확장 모듈` 메뉴로 이동합니다.
+2.  **어댑터 등록**: 각 어댑터(이벤트, 트랜잭션 등)의 설정 창에서 **[어댑터 ID]** 필드에 값을 입력합니다. (예: `event_adapter`)
+3.  **속성 등록**: 하단의 [사용자 정의 속성] 영역에 Key(예: `subject`)와 Value를 입력하고 저장합니다.
+4.  소스 코드에서 위에서 설정한 **[어댑터 ID]**를 첫 번째 파라미터로 전달하여 값을 읽어옵니다.
+
 ### LogUtil
 
 제니퍼 뷰 서버의 로그 시스템에 로그를 기록합니다.
