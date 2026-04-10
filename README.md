@@ -45,6 +45,8 @@ mvn clean package
 
 제니퍼 뷰 서버에는 아래 라이브러리들이 이미 포함되어 있습니다. 확장 모듈 개발 시 해당 라이브러리를 사용할 경우, `pom.xml`에서 의존성 범위(scope)를 `provided`로 설정하여 빌드 결과물(JAR)에 포함되지 않도록 해야 합니다.
 
+**⚠️ 주의: 아래 목록에 없는 외부 라이브러리를 추가로 사용하는 경우에는 의존성 범위를 기본값(`compile`)으로 설정하여 빌드 시 JAR 파일에 함께 패키징되도록 해야 합니다.**
+
 | 분류 | 라이브러리 (Artifact ID) | 버전 |
 |-----------|------------------------------------|-------------|
 | **Extension API** | `extension` | 1.5.8 |
@@ -158,7 +160,7 @@ public class SSOLoginAdapter implements SSOLoginHandler {
 
 ### 5. SystemEventHandler — 시스템 이벤트 어댑터
 
-제니퍼 시스템 이벤트(서버 상태 변경 등)가 발생했을 때 호출됩니다.
+제니퍼 시스템 이벤트(서버 상태 변경, 사용자 조작 등)가 발생했을 때 호출됩니다.
 
 ```java
 import com.aries.extension.handler.SystemEventHandler;
@@ -167,11 +169,26 @@ import com.aries.extension.data.SystemEventData;
 public class SystemEventAdapter implements SystemEventHandler {
     @Override
     public void on(SystemEventData[] events) {
-        // SystemEventData 주요 필드:
-        //   subject, message, dataServer
+        for (SystemEventData data : events) {
+            // data.name: 이벤트 종류 (아래 목록 참조)
+            // data.messages: 이벤트 상세 메시지
+            // data.dataServer: 관련 데이터 서버 정보
+        }
     }
 }
 ```
+
+#### 주요 시스템 이벤트 종류 (`name`)
+
+| 이벤트 이름 (Name) | 설명 |
+|-------------------|------|
+| `DATA_SERVER_DOWN` | 데이터 서버와의 연결이 중단됨 |
+| `LICENSE_EXPIRE_SOON` | 라이선스 만료 임박 |
+| `USER_SIGNED_UP` | 새로운 사용자 등록 |
+| `DATASERVER_NOT_ENOUGH_DISK` | 데이터 서버 디스크 공간 부족 |
+| `PENDING_AGENT_OPTION` | 에이전트 옵션 적용 대기 중 |
+| `SETTING_CHANGED` | 서버 설정 변경 (사용자 조작 로그) |
+| `TALK_ACTIVITY` | 제니퍼 톡(Talk) 활동 발생 |
 
 ### 6. InstanceData & K8s — 쿠버네티스 메타데이터
 
