@@ -252,10 +252,11 @@ String value = PropertyUtil.getValue("event_adapter", "subject", "Default value"
 ```
 
 #### How to Set Adapter ID
-1.  Access the **JENNIFER Management Console**: Go to `Settings` > `Extension Module`.
-2.  **Register Adapter**: In the settings window for each adapter (Event, Transaction, etc.), enter a value in the **[Adapter ID]** field (e.g., `event_adapter`).
-3.  **Register Properties**: Enter Key (e.g., `subject`) and Value in the [Custom Properties] section at the bottom and save.
-4.  In your source code, pass the **[Adapter ID]** set above as the first parameter to read the value.
+1.  Access the **JENNIFER Management Console**: Go to `Settings` > `SMTP and Adapter (+DB Plan)`.
+2.  **Enter Adapter Settings**: Click the button on the right side of the adapter table and select **[Options]** from the menu.
+3.  **Enter Adapter ID**: In the settings popup, enter a value in the **[Adapter ID]** field (e.g., `event_adapter`).
+4.  **Register Properties**: Enter Key (e.g., `subject`) and Value in the [Custom Properties] section of the same popup and save.
+5.  In your source code, pass the **[Adapter ID]** set above as the first parameter to read the value.
 
 ### LogUtil
 
