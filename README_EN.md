@@ -3,6 +3,8 @@
 An all-in-one tutorial project for developing JENNIFER View Server extension modules.  
 Provides adapter implementation examples in both Java and Kotlin.
 
+> **Note**: This project is based on **JENNIFER View Server version 5.6.5.8**.
+
 ## Requirements
 
 - Java 17+
