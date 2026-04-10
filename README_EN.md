@@ -264,6 +264,26 @@ LogUtil.info("Info message");
 LogUtil.error("Error message");
 ```
 
+## Cautions and Naming Conventions
+
+Extension modules are dynamically loaded by the JENNIFER View Server's class loader. To ensure stable operation, the following rules must be strictly followed.
+
+### 1. Use Unique Package Names
+Do not use package names used internally by the JENNIFER server (`com.aries.*`, `aries.*`) to prevent conflicts with the server's internal classes.
+*   **Recommended**: `com.yourcompany.jennifer.extension.*`
+*   **Avoid**: `com.aries.view.*`, `aries.core.*`
+
+### 2. Do Not Use the Default Package
+All classes must be declared within an explicit package. Classes without a package may not be recognized by the server or may cause load errors.
+
+### 3. Enter Full Qualified Class Name (FQCN)
+When registering an adapter in the JENNIFER Management Console, you must enter the **full class name** including the package name in the [Class Name] field.
+*   Example: `com.aries.tutorial.adapter.EventAdapter` (O)
+*   Example: `EventAdapter` (X)
+
+### 4. Beware of Library Duplication
+If you include additional external libraries other than those set to the `provided` scope, check if the library already exists on the server. Conflicts may occur if duplicate libraries with different versions are present.
+
 ## Deployment Steps
 
 1. Build using the `./mvnw clean package` command.
