@@ -139,8 +139,8 @@
 
     <repositories>
         <repository>
-            <id>jennifer-support</id>
-            <url>https://support.jennifersoft.com/nexus/content/groups/public</url>
+            <id>jennifer-maven</id>
+            <url>https://maven.jennifersoft.com/nexus/content/groups/public</url>
         </repository>
     </repositories>
 </project>
