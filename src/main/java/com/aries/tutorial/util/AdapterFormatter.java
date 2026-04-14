@@ -1,0 +1,80 @@
+package com.aries.tutorial.util;
+
+import com.aries.extension.data.EventData;
+import com.aries.extension.data.SystemEventData;
+import com.aries.extension.data.TransactionData;
+import com.aries.extension.data.UserData;
+
+public final class AdapterFormatter {
+
+    private AdapterFormatter() {
+    }
+
+    public static String formatEvent(int idx, EventData data) {
+        StringBuilder sb = new StringBuilder(192);
+        sb.append("▸ EVT  #").append(idx).append("  ");
+        sb.append('⟨').append(data.eventLevel).append("⟩  ");
+        sb.append("domain#").append(data.domainId).append('·').append(data.instanceName);
+        sb.append("  │  biz=").append(data.businessName);
+        sb.append("  │  tx=").append(data.txid);
+        sb.append("  │  svc=").append(data.serviceName);
+        sb.append("  │  ").append(data.errorType);
+        return sb.toString();
+    }
+
+    public static String formatTransaction(int idx, TransactionData data) {
+        StringBuilder sb = new StringBuilder(192);
+        sb.append("◆ TXN  #").append(idx).append("  ");
+        sb.append("domain#").append(data.domainId).append('·').append(data.instanceName);
+        sb.append("  │  tx=").append(data.txid);
+        sb.append("  │  app=").append(data.applicationName);
+        sb.append("  │  ").append(data.responseTime).append("ms");
+        sb.append("  │  err=").append(data.errorType == null ? "-" : data.errorType);
+        return sb.toString();
+    }
+
+    public static String formatSystemEvent(int idx, SystemEventData data) {
+        StringBuilder sb = new StringBuilder(160);
+        sb.append("■ SYS  #").append(idx).append("  ");
+        sb.append("domain#").append(data.domainId);
+        sb.append("  │  subject=").append(data.subject);
+        sb.append("  │  ds=").append(data.dataServer);
+        sb.append("  │  message=").append(data.message);
+        return sb.toString();
+    }
+
+    /**
+     * 로그인 시도 1건을 한 줄로 표현한다.
+     *
+     * @param attemptedId 사용자가 입력한 로그인 ID (실패 시에도 받지만, 비밀번호는 절대 받지 않는다)
+     * @param result      인증 성공 시 채워진 UserData, 실패 시 null
+     * @return "★ LGN  ..." 로 시작하는 한 줄 로그
+     *
+     * TODO(사용자 작성): 아래 보안 의사결정을 반영해 본문을 채워주세요.
+     *   1) 성공/실패 표시: ✓ / ✗ 중 어떤 글리프 또는 [OK]/[FAIL] 같은 텍스트?
+     *   2) 실패 시 attemptedId를 그대로 노출할지, 부분 마스킹("us***1") 할지?
+     *      — 그대로 두면 무차별 대입 공격 시도 ID가 로그에 남아 분석에 유용하지만, GDPR/PII 관점에선 마스킹이 안전.
+     *   3) 성공 시 어떤 UserData 필드를 추가로 보여줄지? (groupId, name 정도만? email은 PII라 제외 권장)
+     *   4) 비밀번호 또는 그 길이/해시 같은 부수 정보는 *절대* 출력하지 말 것.
+     */
+    public static String formatLogin(String attemptedId, UserData result) {
+        // TODO: 사용자 구현
+        return "★ LGN  <not implemented>";
+    }
+
+    /**
+     * SSO 로그인 시도 1건을 한 줄로 표현한다.
+     *
+     * @param ssoHeaderId SSO 헤더(SSO_ID)에서 읽은 사용자 식별자, 헤더가 없으면 null
+     * @param result      인증 성공 시 채워진 UserData, 실패(헤더 누락 등) 시 null
+     * @return "☆ SSO  ..." 로 시작하는 한 줄 로그
+     *
+     * TODO(사용자 작성): formatLogin과 동일한 결정 + 추가 결정.
+     *   - SSO는 헤더 기반이라 "헤더 누락"과 "헤더는 있지만 인증 거부"를 구분해 표시할지?
+     *     예: ssoHeaderId == null 이면 "<no header>", 그 외 실패면 "<denied>"
+     */
+    public static String formatSsoLogin(String ssoHeaderId, UserData result) {
+        // TODO: 사용자 구현
+        return "☆ SSO  <not implemented>";
+    }
+}

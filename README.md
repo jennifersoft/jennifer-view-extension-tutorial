@@ -16,18 +16,24 @@ Java와 Kotlin 두 가지 언어로 어댑터 구현 예시를 제공합니다.
 ```
 src/
 ├── main/
-│   ├── java/com/aries/tutorial/adapter/     # Java 어댑터 예시
-│   │   ├── EventAdapter.java                # 이벤트 핸들러
-│   │   ├── LoginAdapter.java                # 로그인 핸들러
-│   │   ├── SSOLoginAdapter.java             # SSO 로그인 핸들러
-│   │   ├── SystemEventAdapter.java          # 시스템 이벤트 핸들러
-│   │   └── TransactionAdapter.java          # 트랜잭션 핸들러
-│   └── kotlin/com/aries/tutorial2/adapter/  # Kotlin 어댑터 예시
-│       ├── EventAdapter.kt
-│       ├── LoginAdapter.kt
-│       ├── SSOLoginAdapter.kt
-│       ├── SystemEventAdapter.kt
-│       └── TransactionAdapter.kt
+│   ├── java/com/aries/tutorial/
+│   │   ├── adapter/                         # Java 어댑터 예시
+│   │   │   ├── EventAdapter.java            # 이벤트 핸들러
+│   │   │   ├── LoginAdapter.java            # 로그인 핸들러
+│   │   │   ├── SSOLoginAdapter.java         # SSO 로그인 핸들러
+│   │   │   ├── SystemEventAdapter.java      # 시스템 이벤트 핸들러
+│   │   │   └── TransactionAdapter.java      # 트랜잭션 핸들러
+│   │   └── util/
+│   │       └── AdapterFormatter.java        # 어댑터 로그 한 줄 포매터
+│   └── kotlin/com/aries/tutorial2/
+│       ├── adapter/                         # Kotlin 어댑터 예시
+│       │   ├── EventAdapter.kt
+│       │   ├── LoginAdapter.kt
+│       │   ├── SSOLoginAdapter.kt
+│       │   ├── SystemEventAdapter.kt
+│       │   └── TransactionAdapter.kt
+│       └── util/
+│           └── AdapterFormatter.kt          # 어댑터 로그 한 줄 포매터
 dist/                                        # 빌드 출력물 (JAR)
 ```
 
@@ -266,6 +272,55 @@ String value = PropertyUtil.getValue("event_adapter", "subject", "기본값");
 LogUtil.info("정보 메시지");
 LogUtil.error("에러 메시지");
 ```
+
+### AdapterFormatter (튜토리얼 자체 유틸)
+
+어댑터마다 데이터 필드를 한 줄씩 따로 출력하면 로그가 길어지고 어떤 어댑터에서 나온 줄인지 구분하기 어렵습니다. 이 튜토리얼은 `com.aries.tutorial.util.AdapterFormatter` (Java) / `com.aries.tutorial2.util.AdapterFormatter` (Kotlin) 라는 자체 유틸을 두어, 데이터 1건을 한 줄로 포매팅하면서 어댑터 종류를 시각적으로 구분합니다.
+
+#### 어댑터별 글리프 + 태그
+
+| 어댑터 | 글리프 | 태그 | 포매터 메서드 |
+|---|---|---|---|
+| EventAdapter | `▸` | `EVT` | `formatEvent(idx, EventData)` |
+| TransactionAdapter | `◆` | `TXN` | `formatTransaction(idx, TransactionData)` |
+| SystemEventAdapter | `■` | `SYS` | `formatSystemEvent(idx, SystemEventData)` |
+| LoginAdapter | `★` | `LGN` | `formatLogin(attemptedId, UserData?)` |
+| SSOLoginAdapter | `☆` | `SSO` | `formatSsoLogin(ssoHeaderId, UserData?)` |
+
+`grep`은 태그(`EVT`, `TXN` 등)로, 사람 눈은 글리프(`▸`, `◆` 등)로 구분합니다. 박스 드로잉 문자(`│`)와 앵글 브래킷(`⟨⟩`)은 일반 텍스트와 시각적으로 구분되는 효과를 줍니다. 소스 인코딩이 UTF-8(`pom.xml` 명시)이라 안전합니다.
+
+#### 출력 예시
+
+```
+[EventAdapter] - subject (events=2)
+▸ EVT  #1  ⟨ERROR⟩  domain#1·my-was  │  biz=order-api  │  tx=918273645  │  svc=/api/orders  │  NullPointerException
+▸ EVT  #2  ⟨WARN⟩   domain#1·my-was  │  biz=order-api  │  tx=918273646  │  svc=/api/items   │  TimeoutException
+
+[TransactionAdapter] - subject (transactions=1)
+◆ TXN  #1  domain#1·my-was  │  tx=918273645  │  app=order-api  │  120ms  │  err=-
+
+[SystemEventAdapter] - subject (events=1)
+■ SYS  #1  domain#1  │  subject=DATA_SERVER_DOWN  │  ds=ds01  │  message=connection lost
+```
+
+#### 호출 사이트 (Java 예시)
+
+```java
+import com.aries.tutorial.util.AdapterFormatter;
+
+@Override
+public void on(EventData[] events) {
+    int idx = 0;
+    for (EventData data : events) {
+        idx++;
+        LogUtil.info(AdapterFormatter.formatEvent(idx, data));
+    }
+}
+```
+
+#### 보안 결정이 남아 있는 부분
+
+`formatLogin` / `formatSsoLogin` 두 메서드는 보안에 민감한 결정 — 실패 시 ID 노출/마스킹, 성공/실패 표시 글리프, 출력할 `UserData` 필드 선택 — 이 학습자의 몫으로 남겨져 있습니다. 두 파일 안의 TODO 주석에 trade-off가 정리되어 있으니, 본인의 보안 정책에 맞게 본문을 채워 보세요. 비밀번호와 그 길이/해시는 어떤 형태로도 출력하지 마세요.
 
 ## 주의 사항 및 명명 규칙 (Naming Conventions)
 

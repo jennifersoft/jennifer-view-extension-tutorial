@@ -4,18 +4,21 @@ import com.aries.extension.data.UserData;
 import com.aries.extension.handler.LoginHandler;
 import com.aries.extension.util.LogUtil;
 import com.aries.extension.util.PropertyUtil;
+import com.aries.tutorial.util.AdapterFormatter;
 
 public class LoginAdapter implements LoginHandler {
     @Override
     public UserData preHandle(String id, String password) {
-        LogUtil.info("[LoginAdapter] - " +
-                PropertyUtil.getValue("login_adapter", "subject", "Unknown subject"));
+        String subject = PropertyUtil.getValue("login_adapter", "subject", "Unknown subject");
+        LogUtil.info("[LoginAdapter] - " + subject);
 
-        if(id.equals("user1") && password.equals("password1")) {
-            return new UserData(id, password, "admin", "Tester");
+        UserData result = null;
+        if (id.equals("user1") && password.equals("password1")) {
+            result = new UserData(id, password, "admin", "Tester");
         }
 
-        return null;
+        LogUtil.info(AdapterFormatter.formatLogin(id, result));
+        return result;
     }
 
     @Override

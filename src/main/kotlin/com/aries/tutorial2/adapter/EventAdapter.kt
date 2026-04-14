@@ -4,7 +4,7 @@ import com.aries.extension.data.EventData
 import com.aries.extension.handler.EventHandler
 import com.aries.extension.util.LogUtil
 import com.aries.extension.util.PropertyUtil
-import com.aries.tutorial2.util.EventFormatter
+import com.aries.tutorial2.util.AdapterFormatter
 
 class EventAdapter : EventHandler {
     override fun on(events: Array<EventData>) {
@@ -12,7 +12,7 @@ class EventAdapter : EventHandler {
         LogUtil.info("[EventAdapter] - $subject (events=${events.size})")
 
         events.forEachIndexed { index, data ->
-            LogUtil.info(EventFormatter.format(index + 1, data))
+            LogUtil.info(AdapterFormatter.formatEvent(index + 1, data))
 
             // 쿠버네티스 환경 메타데이터 (1.5.8 이상). instanceData 자체가 null인 빌드도 있어 함께 가드.
             val prefix = "    ↳ "

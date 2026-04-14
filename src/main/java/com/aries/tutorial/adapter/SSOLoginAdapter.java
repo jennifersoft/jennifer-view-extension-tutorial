@@ -4,22 +4,24 @@ import com.aries.extension.data.UserData;
 import com.aries.extension.handler.SSOLoginHandler;
 import com.aries.extension.util.LogUtil;
 import com.aries.extension.util.PropertyUtil;
+import com.aries.tutorial.util.AdapterFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class SSOLoginAdapter implements SSOLoginHandler {
     public UserData preHandle(HttpServletRequest request) {
-        LogUtil.info("[SSOLoginAdapter] - " +
-                PropertyUtil.getValue("sso_login_adapter", "subject", "Unknown subject"));
+        String subject = PropertyUtil.getValue("sso_login_adapter", "subject", "Unknown subject");
+        LogUtil.info("[SSOLoginAdapter] - " + subject);
 
-        String sso_user_id = request.getHeader("SSO_ID");
-        String sso_user_password = request.getHeader("SSO_PASSWORD");
+        String ssoUserId = request.getHeader("SSO_ID");
+        String ssoUserPassword = request.getHeader("SSO_PASSWORD");
 
-        if(sso_user_id == null || sso_user_password == null) {
-            LogUtil.error("sso_user_id not found") ;
-            return null;
+        UserData result = null;
+        if (ssoUserId != null && ssoUserPassword != null) {
+            result = new UserData(ssoUserId, ssoUserPassword);
         }
 
-        return new UserData(sso_user_id, sso_user_password);
+        LogUtil.info(AdapterFormatter.formatSsoLogin(ssoUserId, result));
+        return result;
     }
 }

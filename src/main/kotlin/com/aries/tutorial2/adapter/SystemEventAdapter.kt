@@ -4,16 +4,15 @@ import com.aries.extension.data.SystemEventData
 import com.aries.extension.handler.SystemEventHandler
 import com.aries.extension.util.LogUtil
 import com.aries.extension.util.PropertyUtil
+import com.aries.tutorial2.util.AdapterFormatter
 
 class SystemEventAdapter : SystemEventHandler {
     override fun on(events: Array<SystemEventData>) {
-        LogUtil.info("[SystemEventAdapter] - " +
-                PropertyUtil.getValue("system_event_adapter", "subject", "Unknown subject"))
+        val subject = PropertyUtil.getValue("system_event_adapter", "subject", "Unknown subject")
+        LogUtil.info("[SystemEventAdapter] - $subject (events=${events.size})")
 
-        for (data in events) {
-            LogUtil.info("Subject : " + data.subject)
-            LogUtil.info("Message : " + data.message)
-            LogUtil.info("Data Server : " + data.dataServer)
+        events.forEachIndexed { index, data ->
+            LogUtil.info(AdapterFormatter.formatSystemEvent(index + 1, data))
         }
     }
 }
