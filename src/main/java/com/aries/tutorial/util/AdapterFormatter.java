@@ -44,37 +44,43 @@ public final class AdapterFormatter {
     }
 
     /**
-     * 로그인 시도 1건을 한 줄로 표현한다.
+     * 로그인 시도 1건을 한 줄 로그로 만든다.
      *
-     * @param attemptedId 사용자가 입력한 로그인 ID (실패 시에도 받지만, 비밀번호는 절대 받지 않는다)
-     * @param result      인증 성공 시 채워진 UserData, 실패 시 null
-     * @return "★ LGN  ..." 로 시작하는 한 줄 로그
-     *
-     * TODO(사용자 작성): 아래 보안 의사결정을 반영해 본문을 채워주세요.
-     *   1) 성공/실패 표시: ✓ / ✗ 중 어떤 글리프 또는 [OK]/[FAIL] 같은 텍스트?
-     *   2) 실패 시 attemptedId를 그대로 노출할지, 부분 마스킹("us***1") 할지?
-     *      — 그대로 두면 무차별 대입 공격 시도 ID가 로그에 남아 분석에 유용하지만, GDPR/PII 관점에선 마스킹이 안전.
-     *   3) 성공 시 어떤 UserData 필드를 추가로 보여줄지? (groupId, name 정도만? email은 PII라 제외 권장)
-     *   4) 비밀번호 또는 그 길이/해시 같은 부수 정보는 *절대* 출력하지 말 것.
+     * 교육용 단순 예제 — 운영 환경에서는 아래 항목을 추가로 고려할 것:
+     *   - 실패 시 attemptedId 부분 마스킹 (예: "us***1"). brute-force 시 PII 보호.
+     *   - email / cellphone 등 추가 PII 필드는 로그에 남기지 말 것.
+     *   - 비밀번호는 평문 / 해시 / 길이를 막론하고 어떤 형태로도 출력 금지.
+     *   - 성공/실패 표기는 ✓/✗ 글리프 외에 [OK]/[FAIL] 같은 grep 친화 텍스트도 가능.
      */
     public static String formatLogin(String attemptedId, UserData result) {
-        // TODO: 사용자 구현
-        return "★ LGN  <not implemented>";
+        if (result != null) {
+            return "★ LGN  ✓  " + attemptedId
+                    + "  │  group=" + result.groupId
+                    + "  │  name=" + result.name;
+        }
+        return "★ LGN  ✗  " + attemptedId + "  │  <denied>";
     }
 
     /**
-     * SSO 로그인 시도 1건을 한 줄로 표현한다.
+     * SSO 로그인 시도 1건을 한 줄 로그로 만든다.
      *
-     * @param ssoHeaderId SSO 헤더(SSO_ID)에서 읽은 사용자 식별자, 헤더가 없으면 null
-     * @param result      인증 성공 시 채워진 UserData, 실패(헤더 누락 등) 시 null
-     * @return "☆ SSO  ..." 로 시작하는 한 줄 로그
+     * 교육용 단순 예제 — 운영 환경에서는 아래 3-state로 분리해 디버깅 정보를 풍부하게 만들 것:
+     *   - 성공            : ✓ + 헤더 ID + UserData 필드
+     *   - 헤더 누락       : ✗ + "<no header>"  (ssoHeaderId == null 분기)
+     *   - 헤더 있지만 거부 : ✗ + 마스킹 ID + "<denied>"
      *
-     * TODO(사용자 작성): formatLogin과 동일한 결정 + 추가 결정.
-     *   - SSO는 헤더 기반이라 "헤더 누락"과 "헤더는 있지만 인증 거부"를 구분해 표시할지?
-     *     예: ssoHeaderId == null 이면 "<no header>", 그 외 실패면 "<denied>"
+     * formatLogin과 동일한 PII / 비밀번호 출력 금지 원칙이 적용된다.
+     * SSO는 2-arg UserData 생성자를 쓰므로 groupId / name 이 null 일 수 있어 "-" 로 폴백한다.
      */
     public static String formatSsoLogin(String ssoHeaderId, UserData result) {
-        // TODO: 사용자 구현
-        return "☆ SSO  <not implemented>";
+        if (result != null) {
+            String group = result.groupId == null ? "-" : result.groupId;
+            String name = result.name == null ? "-" : result.name;
+            return "☆ SSO  ✓  " + ssoHeaderId
+                    + "  │  group=" + group
+                    + "  │  name=" + name;
+        }
+        String shown = ssoHeaderId == null ? "-" : ssoHeaderId;
+        return "☆ SSO  ✗  " + shown + "  │  <denied>";
     }
 }

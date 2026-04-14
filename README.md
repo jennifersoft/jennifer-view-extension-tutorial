@@ -318,9 +318,14 @@ public void on(EventData[] events) {
 }
 ```
 
-#### 보안 결정이 남아 있는 부분
+#### Login / SSO 포매터의 보안 고려사항
 
-`formatLogin` / `formatSsoLogin` 두 메서드는 보안에 민감한 결정 — 실패 시 ID 노출/마스킹, 성공/실패 표시 글리프, 출력할 `UserData` 필드 선택 — 이 학습자의 몫으로 남겨져 있습니다. 두 파일 안의 TODO 주석에 trade-off가 정리되어 있으니, 본인의 보안 정책에 맞게 본문을 채워 보세요. 비밀번호와 그 길이/해시는 어떤 형태로도 출력하지 마세요.
+`formatLogin` / `formatSsoLogin`은 교육용으로 가장 단순한 형태(입력 ID 그대로 노출, 성공 시 `groupId` / `name`만 표시)로 구현되어 있습니다. 운영 환경에서는 다음을 추가로 고려해야 하며, 각 메서드의 docstring에도 동일하게 정리되어 있습니다:
+
+- 실패 시 입력 ID 부분 마스킹 (예: `us***1`) — brute-force 시 PII 보호
+- `email` / `cellphone` 등 추가 PII 필드는 로그에 남기지 말 것
+- 비밀번호는 **평문 / 해시 / 길이를 막론하고 어떤 형태로도 출력 금지**
+- SSO는 "헤더 누락 (`<no header>`)" / "헤더는 있지만 거부 (`<denied>`)" 를 분리해 디버깅 정보를 풍부하게 만들 수 있음
 
 ## 주의 사항 및 명명 규칙 (Naming Conventions)
 
