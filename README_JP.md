@@ -335,11 +335,17 @@ AI (Claude、Gemini など) が JENNIFER APM 拡張モジュール (アダプタ
 
 #### プロンプトの例
 * **Event Adapter の要求**:
-  > jennifer-extension スキルを使用して、JENNIFER イベントを Slack の Webhook に送信する Java Event Adapter を作成して。
+  ```text
+  jennifer-extension スキルを使用して、JENNIFER イベントを Slack の Webhook に送信する Java Event Adapter を作成して。
+  ```
 * **Transaction Adapter の要求**:
-  > jennifer-extension スキルを使用して、リアルタイムの X-View トランザクションデータをファイルに記録する Kotlin Transaction Adapter を書いて。
+  ```text
+  jennifer-extension スキルを使用して、リアルタイムの X-View トランザクションデータをファイルに記録する Kotlin Transaction Adapter を書いて。
+  ```
 * **Login Adapter の要求**:
-  > jennifer-extension スキルを使用して、外部 LDAP サーバーと連携して認証処理を行う Page タイプの Login Adapter を生成して。
+  ```text
+  jennifer-extension スキルを使用して、外部 LDAP サーバーと連携して認証処理を行う Page タイプの Login Adapter を生成して。
+  ```
 
 ## ライセンス
 

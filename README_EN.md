@@ -335,11 +335,17 @@ With the skill uploaded or installed, request adapter code from the AI by writin
 
 #### Prompt Examples
 * **Event Adapter Request**:
-  > Using the jennifer-extension skill, create a Java Event Adapter that sends JENNIFER events to a Slack webhook.
+  ```text
+  Using the jennifer-extension skill, create a Java Event Adapter that sends JENNIFER events to a Slack webhook.
+  ```
 * **Transaction Adapter Request**:
-  > Using the jennifer-extension skill, write a Kotlin Transaction Adapter that logs real-time X-View transaction data to a file.
+  ```text
+  Using the jennifer-extension skill, write a Kotlin Transaction Adapter that logs real-time X-View transaction data to a file.
+  ```
 * **Login Adapter Request**:
-  > Using the jennifer-extension skill, create a Page type Login Adapter that integrates with an external LDAP server for authentication.
+  ```text
+  Using the jennifer-extension skill, create a Page type Login Adapter that integrates with an external LDAP server for authentication.
+  ```
 
 ## License
 

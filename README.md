@@ -395,11 +395,17 @@ AI(Claude, Gemini 등)가 JENNIFER APM 확장 모듈(어댑터)을 더 빠르고
 
 #### 프롬프트 예시
 * **Event Adapter 요청**:
-  > jennifer-extension 스킬을 사용해서 JENNIFER 이벤트를 Slack 웹훅으로 전송하는 Java Event Adapter를 만들어줘.
+  ```text
+  jennifer-extension 스킬을 사용해서 JENNIFER 이벤트를 Slack 웹훅으로 전송하는 Java Event Adapter를 만들어줘.
+  ```
 * **Transaction Adapter 요청**:
-  > jennifer-extension 스킬을 사용해서 실시간 X-View 트랜잭션 데이터를 파일로 저장하는 Kotlin Transaction Adapter를 작성해줘.
+  ```text
+  jennifer-extension 스킬을 사용해서 실시간 X-View 트랜잭션 데이터를 파일로 저장하는 Kotlin Transaction Adapter를 작성해줘.
+  ```
 * **Login Adapter 요청**:
-  > jennifer-extension 스킬을 사용해서 외부 LDAP 서버와 연동하여 인증을 처리하는 Page 타입의 Login Adapter를 생성해줘.
+  ```text
+  jennifer-extension 스킬을 사용해서 외부 LDAP 서버와 연동하여 인증을 처리하는 Page 타입의 Login Adapter를 생성해줘.
+  ```
 
 ## 라이선스 (License)
 
