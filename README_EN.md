@@ -307,6 +307,40 @@ class EventAdapter : EventHandler {
 }
 ```
 
+## JENNIFER Extension Development Skill (AI Skill) Utilization
+
+A Skill (Knowledge Skill) guide is provided to help AI (Claude, Gemini, etc.) develop JENNIFER APM extension modules (adapters) faster and more accurately. You can use the [jennifer-extension.zip](file:///Users/alvin/Documents/jennifersoft/github/jennifer-view-extension-tutorial/jennifer-extension.zip) file in the project root to integrate it.
+
+### 1. Skill Installation Method
+
+#### Claude Web / Desktop
+1. Download the `jennifer-extension.zip` file copied to the project root and keep it locally.
+2. Go to the **Settings -> Skills** menu on the Claude web screen.
+3. Click the **Upload** button and select the `jennifer-extension.zip` file to upload and enable it.
+
+#### Claude Code CLI (Terminal Environment)
+* **Global Installation (Recommended)**:
+  Install the skill under the global skill directory (`~/.claude/skills/`) so that it can be used in all projects. Run the script from the `claude-skills` repository:
+  ```bash
+  python3 jennifer-extension/scripts/build_skill.py --global --no-zip
+  ```
+* **Project-specific Installation**:
+  Directly link the skill folder in the `.claude/skills/` directory of your project to utilize it within the scope of the project.
+
+---
+
+### 2. How to Create Adapters Using the Skill
+
+With the skill uploaded or installed, request adapter code from the AI by writing an explicit prompt such as **"Using the jennifer-extension skill, ..."**. The AI will automatically write the optimal code matching JENNIFER's SDK structure (LogUtil, PropertyUtil, etc.) and specifications.
+
+#### Prompt Examples
+* **Event Adapter Request**:
+  > Using the jennifer-extension skill, create a Java Event Adapter that sends JENNIFER events to a Slack webhook.
+* **Transaction Adapter Request**:
+  > Using the jennifer-extension skill, write a Kotlin Transaction Adapter that logs real-time X-View transaction data to a file.
+* **Login Adapter Request**:
+  > Using the jennifer-extension skill, create a Page type Login Adapter that integrates with an external LDAP server for authentication.
+
 ## License
 
 Copyright (c) JenniferSoft Inc.

@@ -307,6 +307,40 @@ class EventAdapter : EventHandler {
 }
 ```
 
+## JENNIFER Extension 開発スキル (AI Skill) の活用
+
+AI (Claude、Gemini など) が JENNIFER APM 拡張モジュール (アダプター) をより迅速かつ正確に開発できるように支援する Skill (知識スキル) ガイドを提供しています。プロジェクトのルートディレクトリにある [jennifer-extension.zip](file:///Users/alvin/Documents/jennifersoft/github/jennifer-view-extension-tutorial/jennifer-extension.zip) ファイルを使用して連携することができます。
+
+### 1. スキルのインストール方法
+
+#### Claude Web / Desktop
+1. プロジェクトのルートにコピーされた `jennifer-extension.zip` ファイルをローカル環境にダウンロードします。
+2. Claude のウェブ画面から **Settings (設定) -> Skills** メニューへ移動します。
+3. **Upload** ボタンをクリックし、`jennifer-extension.zip` ファイルを選択してアップロードし、有効化します。
+
+#### Claude Code CLI (ターミナル環境)
+* **グローバルインストール (推奨)**:
+  すべてのプロジェクトでスキルを利用できるように、グローバルスキルディレクトリ (`~/.claude/skills/`) 以下にインストールします。`claude-skills` リポジトリから以下のスクリプトを実行してインストールします。
+  ```bash
+  python3 jennifer-extension/scripts/build_skill.py --global --no-zip
+  ```
+* **プロジェクト個別インストール**:
+  プロジェクトの `.claude/skills/` ディレクトリにスキルフォルダを直接連携させることで、そのプロジェクトのスコープ内で利用できるように構成します。
+
+---
+
+### 2. スキルを使用したアダプター開発方法
+
+スキルがアップロードまたはインストールされた状態で、AI に **「jennifer-extension スキルを使用して〜」** のように明示的なプロンプトを作成してアダプターコードを要求します。AI は JENNIFER の SDK 構造 (LogUtil、PropertyUtil など) や仕様に合わせた最適なコードを自動的に生成します。
+
+#### プロンプトの例
+* **Event Adapter の要求**:
+  > jennifer-extension スキルを使用して、JENNIFER イベントを Slack の Webhook に送信する Java Event Adapter を作成して。
+* **Transaction Adapter の要求**:
+  > jennifer-extension スキルを使用して、リアルタイムの X-View トランザクションデータをファイルに記録する Kotlin Transaction Adapter を書いて。
+* **Login Adapter の要求**:
+  > jennifer-extension スキルを使用して、外部 LDAP サーバーと連携して認証処理を行う Page タイプの Login Adapter を生成して。
+
 ## ライセンス
 
 Copyright (c) JenniferSoft Inc.
