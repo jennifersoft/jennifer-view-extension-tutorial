@@ -293,6 +293,15 @@ JENNIFER 管理コンソールでアダプターを登録する際、[クラス�
 2. `dist/extension-tutorial-1.0.1.jar` ファイルを JENNIFER ビューサーバーの拡張モジュールディレクトリにコピーします。
 3. JENNIFER ビューサーバー管理コンソールでアダプターを登録し、有効化します。
 
+> [!IMPORTANT]
+> **JENNIFER ビューサーバー 5.6.5.10 以上のバージョンにおけるセキュリティ設定**
+> バージョン 5.6.5.10 以降、セキュリティポリシーが強化され、許可されたパッケージ以外の拡張モジュール（アダプター）のロードがブロックされます。ビューサーバーの再起動時にログイン、イベント、またはトランザクションアダプターがロードされない場合は、以下の設定を追加する必要があります。
+> *   **設定ファイル**: `server_view.conf` (通常は `$JENNIFER_HOME/conf/server_view.conf` にあります)
+> *   **設定内容**: (例: 実装したアダプターのパッケージ名が `com.yourcompany.jennifer.extension` の場合)
+>     ```properties
+>     extension_allowed_packages = com.yourcompany.jennifer.extension.*
+>     ```
+
 ## Kotlin 例
 
 すべての変アダプターは Kotlin でも実装されています。`com.aries.tutorial2.adapter` パッケージを参照してください。

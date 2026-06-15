@@ -353,6 +353,15 @@ JENNIFER 서버 내부 클래스와의 충돌을 방지하기 위해, 서버가 
 2. `dist/extension-tutorial-1.0.1.jar` 파일을 제니퍼 뷰 서버의 확장 모듈 디렉토리로 복사
 3. 제니퍼 뷰 서버 관리 콘솔에서 어댑터를 등록하고 활성화
 
+> [!IMPORTANT]
+> **JENNIFER 뷰 서버 5.6.5.10 이상 버전 보안 설정**
+> 5.6.5.10 이상 버전부터는 보안 정책이 강화되어 허용된 패키지 외의 확장 모듈은 로드가 차단됩니다. 뷰 서버 재시작 시 로그인, 이벤트, 트랜잭션 어댑터가 로드되지 않는 경우 아래 설정을 추가해야 합니다:
+> *   **설정 파일**: `server_view.conf` (일반적으로 `$JENNIFER_HOME/conf/server_view.conf`에 위치)
+> *   **설정 내용**: (예: 구현된 어댑터 패키지가 `com.yourcompany.jennifer.extension`인 경우)
+>     ```properties
+>     extension_allowed_packages = com.yourcompany.jennifer.extension.*
+>     ```
+
 ## Kotlin 예시
 
 모든 어댑터는 Kotlin으로도 구현되어 있습니다. `com.aries.tutorial2.adapter` 패키지를 참조하세요.

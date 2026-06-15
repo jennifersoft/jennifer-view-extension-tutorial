@@ -293,6 +293,15 @@ If you include additional external libraries other than those set to the `provid
 2. Copy the `dist/extension-tutorial-1.0.1.jar` file to the JENNIFER View Server's extension module directory.
 3. Register and activate the adapter in the JENNIFER View Server Management Console.
 
+> [!IMPORTANT]
+> **JENNIFER View Server 5.6.5.10+ Security Settings**
+> From version 5.6.5.10 onwards, the security policy has been strengthened, and loading of extension modules from non-allowed packages is blocked. If Login, Event, or Transaction adapters are not loaded when the view server restarts, you must add the following configuration:
+> *   **Configuration File**: `server_view.conf` (Typically located at `$JENNIFER_HOME/conf/server_view.conf`)
+> *   **Configuration Content**: (e.g., if the implemented adapter package is `com.yourcompany.jennifer.extension`)
+>     ```properties
+>     extension_allowed_packages = com.yourcompany.jennifer.extension.*
+>     ```
+
 ## Kotlin Examples
 
 All adapters are also implemented in Kotlin. Refer to the `com.aries.tutorial2.adapter` package.
