@@ -367,6 +367,40 @@ class EventAdapter : EventHandler {
 }
 ```
 
+## JENNIFER Extension 개발 스킬 (AI Skill) 활용
+
+AI(Claude, Gemini 등)가 JENNIFER APM 확장 모듈(어댑터)을 더 빠르고 정확하게 개발할 수 있도록 돕는 Skill(지식 스킬) 가이드가 제공됩니다. 프로젝트 루트의 [jennifer-extension.zip](file:///Users/alvin/Documents/jennifersoft/github/jennifer-view-extension-tutorial/jennifer-extension.zip) 파일을 사용하여 연동할 수 있습니다.
+
+### 1. 스킬 설치 방법
+
+#### Claude Web / Desktop
+1. 프로젝트 루트에 복사된 `jennifer-extension.zip` 파일을 다운로드하여 로컬에 준비합니다.
+2. Claude 웹 화면의 **Settings(설정) -> Skills** 메뉴로 이동합니다.
+3. **Upload** 버튼을 클릭하여 `jennifer-extension.zip` 파일을 업로드하여 활성화합니다.
+
+#### Claude Code CLI (터미널 환경)
+* **글로벌 설치 (권장)**: 
+  글로벌 스킬 디렉토리(`~/.claude/skills/`) 아래에 스킬을 설치하여 모든 프로젝트에서 활용할 수 있습니다. `claude-skills` 저장소에서 아래 스크립트를 사용하여 설치합니다.
+  ```bash
+  python3 jennifer-extension/scripts/build_skill.py --global --no-zip
+  ```
+* **프로젝트별 설치**:
+  프로젝트의 `.claude/skills/` 디렉토리에 스킬 폴더를 직접 연동하여 해당 프로젝트 범위에서 활용할 수 있도록 구성합니다.
+
+---
+
+### 2. 스킬을 사용한 어댑터 개발 방법
+
+스킬이 업로드되거나 설치된 상태에서 AI에게 **"jennifer-extension 스킬을 사용해서~"** 와 같이 명시적인 프롬프트를 작성하여 어댑터 코드를 요청합니다. AI는 제니퍼의 SDK 구조(LogUtil, PropertyUtil 등)와 규격에 맞는 최적의 코드를 자동으로 작성해줍니다.
+
+#### 프롬프트 예시
+* **Event Adapter 요청**:
+  > jennifer-extension 스킬을 사용해서 JENNIFER 이벤트를 Slack 웹훅으로 전송하는 Java Event Adapter를 만들어줘.
+* **Transaction Adapter 요청**:
+  > jennifer-extension 스킬을 사용해서 실시간 X-View 트랜잭션 데이터를 파일로 저장하는 Kotlin Transaction Adapter를 작성해줘.
+* **Login Adapter 요청**:
+  > jennifer-extension 스킬을 사용해서 외부 LDAP 서버와 연동하여 인증을 처리하는 Page 타입의 Login Adapter를 생성해줘.
+
 ## 라이선스 (License)
 
 Copyright (c) JenniferSoft Inc.
