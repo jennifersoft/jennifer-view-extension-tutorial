@@ -314,18 +314,21 @@ A Skill (Knowledge Skill) guide is provided to help AI (Claude, Gemini, etc.) de
 ### 1. Skill Installation Method
 
 #### Claude Web / Desktop
-1. Download the `jennifer-extension.zip` file copied to the project root and keep it locally.
+1. Click [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip) (or [jsDelivr CDN Link](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/jennifer-extension.zip)) to download the file.
 2. Go to the **Settings -> Skills** menu on the Claude web screen.
-3. Click the **Upload** button and select the `jennifer-extension.zip` file to upload and enable it.
+3. Click the **Upload** button and select the downloaded `jennifer-extension.zip` file to upload and enable it.
 
 #### Claude Code CLI (Terminal Environment)
-* **Global Installation (Recommended)**:
-  Install the skill under the global skill directory (`~/.claude/skills/`) so that it can be used in all projects. Run the script from the `claude-skills` repository:
+Instead of cloning and building the repository manually, you can copy and run the following curl commands in your terminal to automatically download and install the latest skill from the GitHub repository.
+
+* **Global Installation (Recommended - Available in all projects)**:
   ```bash
-  python3 jennifer-extension/scripts/build_skill.py --global --no-zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
   ```
-* **Project-specific Installation**:
-  Directly link the skill folder in the `.claude/skills/` directory of your project to utilize it within the scope of the project.
+* **Project-specific Installation (Only available within the scope of the current project)**:
+  ```bash
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
+  ```
 
 ---
 

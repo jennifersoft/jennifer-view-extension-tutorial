@@ -374,18 +374,21 @@ AI(Claude, Gemini 등)가 JENNIFER APM 확장 모듈(어댑터)을 더 빠르고
 ### 1. 스킬 설치 방법
 
 #### Claude Web / Desktop
-1. 프로젝트 루트에 복사된 `jennifer-extension.zip` 파일을 다운로드하여 로컬에 준비합니다.
+1. [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip) (또는 [jsDelivr CDN 링크](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/jennifer-extension.zip))를 클릭하여 다운로드합니다.
 2. Claude 웹 화면의 **Settings(설정) -> Skills** 메뉴로 이동합니다.
-3. **Upload** 버튼을 클릭하여 `jennifer-extension.zip` 파일을 업로드하여 활성화합니다.
+3. **Upload** 버튼을 클릭하여 다운로드한 `jennifer-extension.zip` 파일을 업로드하여 활성화합니다.
 
 #### Claude Code CLI (터미널 환경)
-* **글로벌 설치 (권장)**: 
-  글로벌 스킬 디렉토리(`~/.claude/skills/`) 아래에 스킬을 설치하여 모든 프로젝트에서 활용할 수 있습니다. `claude-skills` 저장소에서 아래 스크립트를 사용하여 설치합니다.
+저장소를 직접 clone하여 빌드할 필요 없이, 아래 curl 명령어를 터미널에 복사-붙여넣기하여 실행하면 GitHub 원격 저장소에서 최신 스킬을 자동으로 다운로드하여 설치할 수 있습니다.
+
+* **글로벌 설치 (권장 - 모든 프로젝트에서 사용 가능)**:
   ```bash
-  python3 jennifer-extension/scripts/build_skill.py --global --no-zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
   ```
-* **프로젝트별 설치**:
-  프로젝트의 `.claude/skills/` 디렉토리에 스킬 폴더를 직접 연동하여 해당 프로젝트 범위에서 활용할 수 있도록 구성합니다.
+* **프로젝트별 설치 (현재 프로젝트 범위에서만 사용 가능)**:
+  ```bash
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
+  ```
 
 ---
 

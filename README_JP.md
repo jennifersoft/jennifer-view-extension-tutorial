@@ -314,18 +314,21 @@ AI (Claude、Gemini など) が JENNIFER APM 拡張モジュール (アダプタ
 ### 1. スキルのインストール方法
 
 #### Claude Web / Desktop
-1. プロジェクトのルートにコピーされた `jennifer-extension.zip` ファイルをローカル環境にダウンロードします。
+1. [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip) (または [jsDelivr CDN リンク](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/jennifer-extension.zip)) をクリックしてダウンロードします。
 2. Claude のウェブ画面から **Settings (設定) -> Skills** メニューへ移動します。
-3. **Upload** ボタンをクリックし、`jennifer-extension.zip` ファイルを選択してアップロードし、有効化します。
+3. **Upload** ボタンをクリックし、ダウンロードした `jennifer-extension.zip` ファイルを選択してアップロードし、有効化します。
 
 #### Claude Code CLI (ターミナル環境)
-* **グローバルインストール (推奨)**:
-  すべてのプロジェクトでスキルを利用できるように、グローバルスキルディレクトリ (`~/.claude/skills/`) 以下にインストールします。`claude-skills` リポジトリから以下のスクリプトを実行してインストールします。
+リポジトリを直接クローンしてビルドする必要はなく、以下の curl コマンドをコピーしてターミナルで実行するだけで、GitHub リモートリポジトリから最新のスキルを自動的にダウンロードしてインストールできます。
+
+* **グローバルインストール (推奨 - すべてのプロジェクトで利用可能)**:
   ```bash
-  python3 jennifer-extension/scripts/build_skill.py --global --no-zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
   ```
-* **プロジェクト個別インストール**:
-  プロジェクトの `.claude/skills/` ディレクトリにスキルフォルダを直接連携させることで、そのプロジェクトのスコープ内で利用できるように構成します。
+* **プロジェクト個別インストール (現在のプロジェクトのスコープ内でのみ利用可能)**:
+  ```bash
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
+  ```
 
 ---
 
