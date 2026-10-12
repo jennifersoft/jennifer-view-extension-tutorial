@@ -318,12 +318,12 @@ class EventAdapter : EventHandler {
 
 ## JENNIFER Extension Development Skill (AI Skill) Utilization
 
-A Skill (Knowledge Skill) guide is provided to help AI (Claude, Gemini, etc.) develop JENNIFER APM extension modules (adapters) faster and more accurately. You can use the [jennifer-extension.zip](file:///Users/alvin/Documents/jennifersoft/github/jennifer-view-extension-tutorial/jennifer-extension.zip) file in the project root to integrate it.
+A Skill (Knowledge Skill) guide is provided to help AI (Claude, Gemini, etc.) develop JENNIFER APM extension modules (adapters) faster and more accurately. You can use the [jennifer-extension.zip](skills/jennifer-extension.zip) file in the repository's `skills/` directory to integrate it.
 
 ### 1. Skill Installation Method
 
 #### Claude Web / Desktop
-1. Click [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip) (or [jsDelivr CDN Link](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/jennifer-extension.zip)) to download the file.
+1. Click [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip) (or [jsDelivr CDN Link](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/skills/jennifer-extension.zip)) to download the file.
 2. Go to the **Settings -> Skills** menu on the Claude web screen.
 3. Click the **Upload** button and select the downloaded `jennifer-extension.zip` file to upload and enable it.
 
@@ -332,11 +332,11 @@ Instead of cloning and building the repository manually, you can copy and run th
 
 * **Global Installation (Recommended - Available in all projects)**:
   ```bash
-  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
   ```
 * **Project-specific Installation (Only available within the scope of the current project)**:
   ```bash
-  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
   ```
 
 ---

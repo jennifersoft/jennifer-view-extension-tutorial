@@ -378,12 +378,12 @@ class EventAdapter : EventHandler {
 
 ## JENNIFER Extension 개발 스킬 (AI Skill) 활용
 
-AI(Claude, Gemini 등)가 JENNIFER APM 확장 모듈(어댑터)을 더 빠르고 정확하게 개발할 수 있도록 돕는 Skill(지식 스킬) 가이드가 제공됩니다. 프로젝트 루트의 [jennifer-extension.zip](file:///Users/alvin/Documents/jennifersoft/github/jennifer-view-extension-tutorial/jennifer-extension.zip) 파일을 사용하여 연동할 수 있습니다.
+AI(Claude, Gemini 등)가 JENNIFER APM 확장 모듈(어댑터)을 더 빠르고 정확하게 개발할 수 있도록 돕는 Skill(지식 스킬) 가이드가 제공됩니다. 저장소의 `skills/` 디렉터리에 있는 [jennifer-extension.zip](skills/jennifer-extension.zip) 파일을 사용하여 연동할 수 있습니다.
 
 ### 1. 스킬 설치 방법
 
 #### Claude Web / Desktop
-1. [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip) (또는 [jsDelivr CDN 링크](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/jennifer-extension.zip))를 클릭하여 다운로드합니다.
+1. [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip) (또는 [jsDelivr CDN 링크](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/skills/jennifer-extension.zip))를 클릭하여 다운로드합니다.
 2. Claude 웹 화면의 **Settings(설정) -> Skills** 메뉴로 이동합니다.
 3. **Upload** 버튼을 클릭하여 다운로드한 `jennifer-extension.zip` 파일을 업로드하여 활성화합니다.
 
@@ -392,11 +392,11 @@ AI(Claude, Gemini 등)가 JENNIFER APM 확장 모듈(어댑터)을 더 빠르고
 
 * **글로벌 설치 (권장 - 모든 프로젝트에서 사용 가능)**:
   ```bash
-  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
   ```
 * **프로젝트별 설치 (현재 프로젝트 범위에서만 사용 가능)**:
   ```bash
-  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
   ```
 
 ---

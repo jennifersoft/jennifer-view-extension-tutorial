@@ -318,12 +318,12 @@ class EventAdapter : EventHandler {
 
 ## JENNIFER Extension 開発スキル (AI Skill) の活用
 
-AI (Claude、Gemini など) が JENNIFER APM 拡張モジュール (アダプター) をより迅速かつ正確に開発できるように支援する Skill (知識スキル) ガイドを提供しています。プロジェクトのルートディレクトリにある [jennifer-extension.zip](file:///Users/alvin/Documents/jennifersoft/github/jennifer-view-extension-tutorial/jennifer-extension.zip) ファイルを使用して連携することができます。
+AI (Claude、Gemini など) が JENNIFER APM 拡張モジュール (アダプター) をより迅速かつ正確に開発できるように支援する Skill (知識スキル) ガイドを提供しています。リポジトリの `skills/` ディレクトリにある [jennifer-extension.zip](skills/jennifer-extension.zip) ファイルを使用して連携することができます。
 
 ### 1. スキルのインストール方法
 
 #### Claude Web / Desktop
-1. [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip) (または [jsDelivr CDN リンク](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/jennifer-extension.zip)) をクリックしてダウンロードします。
+1. [jennifer-extension.zip](https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip) (または [jsDelivr CDN リンク](https://cdn.jsdelivr.net/gh/jennifersoft/jennifer-view-extension-tutorial@main/skills/jennifer-extension.zip)) をクリックしてダウンロードします。
 2. Claude のウェブ画面から **Settings (設定) -> Skills** メニューへ移動します。
 3. **Upload** ボタンをクリックし、ダウンロードした `jennifer-extension.zip` ファイルを選択してアップロードし、有効化します。
 
@@ -332,11 +332,11 @@ AI (Claude、Gemini など) が JENNIFER APM 拡張モジュール (アダプタ
 
 * **グローバルインストール (推奨 - すべてのプロジェクトで利用可能)**:
   ```bash
-  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip -o ~/.claude/skills/jennifer-extension.zip && unzip -o ~/.claude/skills/jennifer-extension.zip -d ~/.claude/skills/ && rm ~/.claude/skills/jennifer-extension.zip
   ```
 * **プロジェクト個別インストール (現在のプロジェクトのスコープ内でのみ利用可能)**:
   ```bash
-  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
+  curl -L https://github.com/jennifersoft/jennifer-view-extension-tutorial/raw/main/skills/jennifer-extension.zip -o .claude/skills/jennifer-extension.zip && unzip -o .claude/skills/jennifer-extension.zip -d .claude/skills/ && rm .claude/skills/jennifer-extension.zip
   ```
 
 ---
